@@ -1,4 +1,4 @@
-package com.example.appaula.data
+package com.example.appaula.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -17,4 +17,3 @@ data class Cliente (
 )
 
 // Data class -> Dao (interface) -> Database (abstract class) -> Repository
-

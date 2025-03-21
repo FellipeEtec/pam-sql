@@ -1,9 +1,10 @@
-package com.example.appaula.data
+package com.example.appaula.data.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Query
 import androidx.room.Upsert
+import com.example.appaula.data.model.Cliente
 import kotlinx.coroutines.flow.Flow
 
 @Dao

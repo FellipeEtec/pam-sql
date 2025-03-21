@@ -63,4 +63,8 @@ dependencies {
     implementation("androidx.room:room-runtime:$roomVersion")
     ksp("androidx.room:room-compiler:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
+    
+    // ViewModel
+    val viewModelVersion = "2.8.7"
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$viewModelVersion")
 }
