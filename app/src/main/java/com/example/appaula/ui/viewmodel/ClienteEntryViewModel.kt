@@ -17,6 +17,6 @@ class ClienteEntryViewModel(private val clientesRepository: ClientesRepository) 
     }
 
     suspend fun saveCliente() {
-        clientesRepository.upsertCliente(clienteState.toCliente())
+        clientesRepository.insertCliente(clienteState.toCliente())
     }
 }

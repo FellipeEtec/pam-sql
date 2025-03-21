@@ -8,7 +8,11 @@ interface ClientesRepository {
 
     fun getClientesStream(id: Int): Flow<Cliente?>
 
-    suspend fun upsertCliente(cliente: Cliente)
+    // suspend fun upsertCliente(cliente: Cliente)
+
+    suspend fun insertCliente(cliente: Cliente)
+
+    suspend fun updateCliente(cliente: Cliente)
 
     suspend fun deleteCliente(cliente: Cliente)
 }

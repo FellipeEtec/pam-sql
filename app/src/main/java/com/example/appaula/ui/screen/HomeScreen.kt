@@ -1,5 +1,6 @@
 package com.example.appaula.ui.screen
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,6 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
@@ -29,15 +31,8 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun HomeScreen(
-    modifier: Modifier = Modifier,
-    viewModel: ClienteEntryViewModel = viewModel(factory = AppViewModelProvider.Factory)
+    modifier: Modifier = Modifier
 ) {
-    val coroutineScope = rememberCoroutineScope()
-
-    Surface(
-        color = Color(0xFF202025),
-        modifier = Modifier.fillMaxSize()
-    ) {
         Column(
             modifier = modifier.padding(20.dp),
             verticalArrangement = Arrangement.spacedBy(20.dp)
@@ -48,7 +43,6 @@ fun HomeScreen(
             ) {
                 Text(
                     text = "App Cadastro",
-                    color = Color.White,
                     fontSize = 36.sp,
                     fontWeight = FontWeight.SemiBold,
                     fontFamily = FontFamily.Monospace
@@ -57,61 +51,99 @@ fun HomeScreen(
 
             HorizontalDivider(thickness = 2.dp)
 
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center
-            ) {
-                OutlinedTextField(
-                    value = viewModel.clienteState.nome,
-                    onValueChange = { viewModel.updateUiState(viewModel.clienteState.copy(nome = it)) },
-                    label = { Text("Nome") },
-                    singleLine = true,
-                    colors = TextFieldDefaults.colors(
-                        unfocusedContainerColor = Color.White,
-                        focusedContainerColor = Color.White
-                    )
-                )
-            }
+            ClienteEntryBody()
+        }
+}
 
-//            Row(
-//                modifier = Modifier.fillMaxWidth(),
-//                horizontalArrangement = Arrangement.Center
-//            ) {
-//                OutlinedTextField(
-//                    value = telValue,
-//                    onValueChange = { telValue = it },
-//                    label = { Text("Telefone") },
-//                    singleLine = true,
-//                    colors = TextFieldDefaults.colors(
-//                        unfocusedContainerColor = Color.White,
-//                        focusedContainerColor = Color.White
-//                    )
-//                )
-//            }
+@Composable
+fun ClienteEntryBody(
+    modifier: Modifier = Modifier,
+    viewModel: ClienteEntryViewModel = viewModel(factory = AppViewModelProvider.Factory)
+) {
+    val coroutineScope = rememberCoroutineScope()
 
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center
-            ) {
-                Button(
-                    onClick = {
-                        coroutineScope.launch {
-                            viewModel.saveCliente()
-                        }
-                    },
-                    shape = RoundedCornerShape(8.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color.White
-                    )
-                ) {
-                    Text(
-                        text = "Cadastrar",
-                        color = Color(0xFF202025),
-                        fontSize = 24.sp,
-                        modifier = Modifier.padding(horizontal = 16.dp)
-                    )
+    Column(
+        modifier = modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Column(
+            modifier = Modifier.weight(1f)
+        ) {
+            InputArea(
+                value = viewModel.clienteState.nome,
+                onValueChange = {
+                    viewModel.updateUiState(viewModel.clienteState.copy(nome = it))
+                },
+                "Nome"
+            )
+            InputArea(
+                value = viewModel.clienteState.endereco,
+                onValueChange = {
+                    viewModel.updateUiState(viewModel.clienteState.copy(endereco = it))
+                },
+                "Endereço"
+            )
+            InputArea(
+                value = viewModel.clienteState.bairro,
+                onValueChange = {
+                    viewModel.updateUiState(viewModel.clienteState.copy(bairro = it))
+                },
+                "Bairro"
+            )
+            InputArea(
+                value = viewModel.clienteState.cep,
+                onValueChange = {
+                    viewModel.updateUiState(viewModel.clienteState.copy(cep = it))
+                },
+                "CEP"
+            )
+            InputArea(
+                value = viewModel.clienteState.cidade,
+                onValueChange = {
+                    viewModel.updateUiState(viewModel.clienteState.copy(cidade = it))
+                },
+                "Cidade"
+            )
+            InputArea(
+                value = viewModel.clienteState.estado,
+                onValueChange = {
+                    viewModel.updateUiState(viewModel.clienteState.copy(estado = it))
+                },
+                "Estado"
+            )
+        }
+
+        Button(
+            onClick = {
+                coroutineScope.launch {
+                    viewModel.saveCliente()
                 }
-            }
+            },
+            shape = RoundedCornerShape(8.dp)
+        ) {
+            Text(
+                text = "Cadastrar",
+                fontSize = 24.sp,
+                modifier = Modifier.padding(horizontal = 16.dp)
+            )
         }
     }
+}
+
+@Composable
+fun InputArea(
+    value: String,
+    onValueChange: (String) -> Unit,
+    label: String
+) {
+    OutlinedTextField(
+        value = value,
+        onValueChange = onValueChange,
+        label = { Text(label) },
+        singleLine = true,
+        colors = TextFieldDefaults.colors(
+            unfocusedContainerColor = Color.White,
+            focusedContainerColor = Color.White
+        )
+    )
 }
