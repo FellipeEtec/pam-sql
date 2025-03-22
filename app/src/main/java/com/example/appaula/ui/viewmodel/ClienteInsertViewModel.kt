@@ -8,7 +8,7 @@ import com.example.appaula.data.model.ClienteState
 import com.example.appaula.data.model.toCliente
 import com.example.appaula.data.repository.ClientesRepository
 
-class ClienteEntryViewModel(private val clientesRepository: ClientesRepository) : ViewModel() {
+class ClienteInsertViewModel(private val clientesRepository: ClientesRepository) : ViewModel() {
     var clienteState by mutableStateOf(ClienteState())
         private set
 
@@ -16,7 +16,16 @@ class ClienteEntryViewModel(private val clientesRepository: ClientesRepository) 
         clienteState = clienteUiState
     }
 
-    suspend fun saveCliente() {
+    suspend fun saveCliente(): Boolean {
+        if (!verifySaveable()) {
+            return false
+        }
+
         clientesRepository.insertCliente(clienteState.toCliente())
+        return true
+    }
+
+    fun verifySaveable(): Boolean {
+        return clienteState.nome !== ""
     }
 }

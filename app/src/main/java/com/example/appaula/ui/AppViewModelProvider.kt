@@ -5,12 +5,12 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.appaula.EmpresaApplication
-import com.example.appaula.ui.viewmodel.ClienteEntryViewModel
+import com.example.appaula.ui.viewmodel.ClienteInsertViewModel
 
 object AppViewModelProvider {
     val Factory = viewModelFactory {
         initializer {
-            ClienteEntryViewModel(empresaApplication().container.clientesRepository)
+            ClienteInsertViewModel(empresaApplication().container.clientesRepository)
         }
     }
 }
