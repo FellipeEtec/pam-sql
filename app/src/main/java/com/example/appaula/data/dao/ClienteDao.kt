@@ -12,9 +12,11 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ClienteDao {
+    // Unificação de Insert e Update (upsert)
 //    @Upsert
 //    suspend fun upsert(cliente: Cliente)
 
+    // Funções com código SQL padrão
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(cliente: Cliente)
 
@@ -24,6 +26,7 @@ interface ClienteDao {
     @Delete
     suspend fun delete(cliente: Cliente)
 
+    // Funções com código SQL customizado
     @Query("SELECT * from clientes WHERE id = :id")
     fun getCliente(id: Int): Flow<Cliente>
 
