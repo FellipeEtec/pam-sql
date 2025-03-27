@@ -4,6 +4,7 @@ import com.example.appaula.data.dao.ClienteDao
 import com.example.appaula.data.model.Cliente
 import kotlinx.coroutines.flow.Flow
 
+// Repositório para uso offline/sem internet
 class OfflineClientesRepository(private val clienteDao: ClienteDao): ClientesRepository {
     override fun getAllClientesStream(): Flow<List<Cliente>> = clienteDao.getAllClientes()
 
