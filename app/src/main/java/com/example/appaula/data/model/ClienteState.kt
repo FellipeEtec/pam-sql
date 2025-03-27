@@ -2,7 +2,8 @@ package com.example.appaula.data.model
 
 import kotlin.String
 
-// Represents the Cliente on the UI (not the database version)
+// Representa a entidade Cliente na UI
+// Pode guardar informações adicionais, mas o ideal para isso é criar outra classe, uma apenas com os campos
 data class ClienteState(
     var id: Int = 0,
     var nome: String = "",
@@ -13,6 +14,7 @@ data class ClienteState(
     var estado: String = ""
 )
 
+// Função padrão para conversão de ClienteState para Cliente
 fun ClienteState.toCliente(): Cliente = Cliente(
     id = id,
     nome = nome,
