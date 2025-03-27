@@ -1,15 +1,15 @@
 - [adicionar dependencias do Room]
 - Classes de Modelagem/Tabela
-- Interfaces Dao (um para cada tabelas; representa a entidade no banco de dados)
+- Interfaces DAO (um para cada tabela)
 - Database
 - Interface dos Repositórios
-- Repositórios Offline (obs: injeta o Dao, fazendo par para cada uma das tabelas)
+- Repositórios Offline (obs: faz par com o DAO para cada uma das tabelas)
 - AppContainer (instancia os Repositórios)
 - Classes de UI State das Tabelas (representa a entidade na UI)
 - [adicionar dependencias do ViewModel]
 - ViewModels das Tabelas
 - Classe da Aplicação 
-- ViewModelProvider (modelo Singleton para os ViewModels)
+- ViewModelProvider (instancia os ViewModels)
 - [instanciar a aplicação no provider] (a classe precisa estar definida no Manifest)
 - [instanciar os ViewModels] (como parâmetro de função Composable)
 - Formulário
