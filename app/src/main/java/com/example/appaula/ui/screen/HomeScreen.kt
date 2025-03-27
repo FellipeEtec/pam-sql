@@ -30,7 +30,7 @@ fun HomeScreen(
         modifier = modifier.fillMaxSize()
     ) {
         TopBar(
-            title = "Empresa Lorem Ipsum"
+            title = "Aplicativo Room Empresa"
         )
 
         Box(
