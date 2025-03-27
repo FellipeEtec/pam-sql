@@ -9,8 +9,8 @@
 - [adicionar dependencias do ViewModel]
 - ViewModels das Tabelas
 - Classe da Aplicação 
-- [instanciar a aplicação] (a classe precisa estar definida no Manifest)
 - ViewModelProvider (modelo Singleton para os ViewModels)
+- [instanciar a aplicação no provider] (a classe precisa estar definida no Manifest)
 - [instanciar os ViewModels] (como parâmetro de função Composable)
 - Formulário
 - Botão de Salvar
